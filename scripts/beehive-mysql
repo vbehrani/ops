@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh -t beehive1 docker exec -ti beehive-mysql mysql -u waggle --password=waggle

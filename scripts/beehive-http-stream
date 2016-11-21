@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ssh beehive1 -- journalctl -u monitor-nodes-http -f -q
