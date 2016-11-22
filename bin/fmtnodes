@@ -1,0 +1,18 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+  FS = ","
+  count = 0
+}
+
+{
+  if (count++ > 0) {
+    print ""
+  }
+
+  print "id=" substr($1, 6, 16)
+  print "name=" $2
+  print "desc=" $3
+  print "loc=" $4
+  print "port=" $5
+}
