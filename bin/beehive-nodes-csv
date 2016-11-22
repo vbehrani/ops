@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl -s -H 'Accept: text/csv' 'http://beehive1.mcs.anl.gov/api/nodes'
