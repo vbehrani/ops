@@ -10,9 +10,29 @@ BEGIN {
     print ""
   }
 
-  print "id=" substr($1, 6, 16)
-  print "name=" $2
-  print "desc=" $3
-  print "loc=" $4
-  print "port=" $5
+  if (!$1) {
+    $1 = "<none>"
+  }
+
+  if (!$2) {
+    $2 = "<none>"
+  }
+
+  if (!$3) {
+    $3 = "<none>"
+  }
+
+  if (!$4) {
+    $4 = "<none>"
+  }
+
+  if (!$5) {
+    $5 = "<none>"
+  }
+
+  print "ID\t\t" substr($1, 6, 16)
+  print "Name\t\t" $2
+  print "Description\t" $3
+  print "Location\t" $4
+  print "Port\t\t" $5
 }
