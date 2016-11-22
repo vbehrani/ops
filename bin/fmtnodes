@@ -2,6 +2,8 @@
 
 BEGIN {
   FS = ","
+
+  split("ID Name Description Location Port", labels, " ")
   count = 0
 }
 
@@ -10,29 +12,13 @@ BEGIN {
     print ""
   }
 
-  if (!$1) {
-    $1 = "<none>"
-  }
+  $1 = substr($1, 6, 16)
 
-  if (!$2) {
-    $2 = "<none>"
-  }
+  for (i = 1; i <= 5; i++) {
+    if (!$i) {
+      $i = "<none>"
+    }
 
-  if (!$3) {
-    $3 = "<none>"
+    printf "%-12s %s\n", labels[i], $i
   }
-
-  if (!$4) {
-    $4 = "<none>"
-  }
-
-  if (!$5) {
-    $5 = "<none>"
-  }
-
-  print "ID\t\t" substr($1, 6, 16)
-  print "Name\t\t" $2
-  print "Description\t" $3
-  print "Location\t" $4
-  print "Port\t\t" $5
 }
