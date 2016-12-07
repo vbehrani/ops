@@ -1,0 +1,13 @@
+Node: 001e061089c0
+Devices: coresense
+Notes: Old coresense firmware. I went ahead and updated this.
+
+
+Node: 001e06107e5d
+Devices: coresense
+Notes: Old coresense firmware. I went ahead and updated this.
+
+
+Node: 001e061089fa
+Devices: coresense, wagman
+Notes: Already seemed like I attempted to update coresense firmware. I performed an update again, though.

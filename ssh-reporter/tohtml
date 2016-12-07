@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+from jinja2 import Template
+import sys
+
+ssh_report = map(str.split, open(sys.argv[1]).readlines())
+
+
+t = Template('''
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="report.css" />
+  </head>
+  <body>
+    {% for item in ssh_report %}
+    <div>
+      <h2>{{ item[0] }}</h2>
+
+      <p>Port: {{ item[1] }}</p>
+
+      {% if item[2] == 'OK' %}
+      <p>SSH: <span class="pass">PASS</span></p>
+      {% else %}
+      <p>SSH: <span class="fail">FAIL</span></p>
+      {% endif %}
+    {% endfor %}
+  </body>
+</html>
+''')
+
+print(t.render(ssh_report=ssh_report))

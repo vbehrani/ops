@@ -1,0 +1,22 @@
+# release info
+Distributor ID:	Ubuntu
+Description:	Ubuntu 14.04.4 LTS
+Release:	14.04
+Codename:	trusty
+# uptime
+ 16:49:28 up 16 days, 22:17,  0 users,  load average: 0.09, 0.12, 0.13
+# lsusb
+Bus 001 Device 005: ID 2341:8037 Arduino SA 
+Bus 001 Device 004: ID 04d8:ffee Microchip Technology, Inc. Devantech USB-ISS
+Bus 001 Device 003: ID 0bda:8152 Realtek Semiconductor Corp. 
+Bus 001 Device 002: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+# lsblk
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+mmcblk0     179:0    0  14.9G  0 disk 
+├─mmcblk0p1 179:1    0 128.5M  0 part /media/boot
+└─mmcblk0p2 179:2    0  14.7G  0 part /
+mmcblk1     179:16   0   7.3G  0 disk 
+├─mmcblk1p1 179:17   0 128.5M  0 part 
+└─mmcblk1p2 179:18   0   7.2G  0 part 

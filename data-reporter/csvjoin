@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+import sys
+import csv
+from itertools import product
+
+
+def makeindex(reader):
+    index = {}
+
+    for row in reader:
+        if row[0] not in index:
+            index[row[0]] = []
+        index[row[0]].append(tuple(row[1:]))
+
+    return index
+
+
+index1 = makeindex(csv.reader(open(sys.argv[1])))
+index2 = makeindex(csv.reader(open(sys.argv[2])))
+
+keys = set(index1.keys()) & set(index2.keys())
+
+for key in keys:
+    for row1, row2 in product(index1[key], index2[key]):
+        print(','.join((key,) + row1 + row2))

@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import fileinput
+import json
+import requests
+
+
+def get_dates(node_id):
+    node_id = node_id.rjust(16, '0')
+
+    for version in ['2', '1']:
+        r = requests.get(u'http://beehive1.mcs.anl.gov/api/1/nodes/{}/dates?version={}'.format(node_id, version))
+
+        if r.status_code == 200:
+            return {
+                'dates': r.json()['data'],
+                'version': version,
+            }
+
+    raise RuntimeError('Could not get node dates.')
+
+
+for item in map(json.loads, fileinput.input()):
+    try:
+        r = get_dates(item['node_id'])
+    except RuntimeError:
+        continue
+
+    if len(r['dates']) == 0:
+        continue
+
+    item['data_version'] = r['version']
+    item['data_latest'] = max(r['dates'])
+
+    print(json.dumps(item), flush=True)

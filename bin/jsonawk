@@ -1,0 +1,9 @@
+#/usr/bin/env python3
+import json
+
+
+'$name ~ /.../'
+
+this could
+
+# ...or just use json everywhere and have tools which can operate on them...

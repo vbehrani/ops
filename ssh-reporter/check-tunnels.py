@@ -1,24 +1,30 @@
+#!/usr/bin/env python3
 import requests
 import subprocess
-from datetime import datetime
+import json
+import time
+from pprint import pprint
 
 
-r = requests.get('http://beehive1.mcs.anl.gov/api/nodes')
-nodes = r.json()
-
-status = []
+nodes = requests.get('http://beehive1.mcs.anl.gov/api/nodes').json()
+results = []
 
 for node in nodes:
-    nodeid = node['id']
-    port = node['port']
+    result = {
+        'node_id': node['id'][-12:].lower(),
+        'ssh_port': node['port'],
+        'ssh_time': time.time(),
+    }
+
     try:
-        subprocess.check_output("ssh node{} 'echo OK; exit'".format(port), shell=True)
-        status.append((nodeid, 'OK'))
+        output = subprocess.check_output("ssh node{} 'echo OK; exit'".format(node['port']), shell=True).decode()
+        assert 'OK' in output
+        result['ssh_alive'] = True
     except:
-        status.append((nodeid, 'ERR'))
+        result['ssh_alive'] = False
 
-filename = datetime.now().strftime('ssh-%Y%m%d%H%M%S.csv')
+    pprint(result)
+    results.append(result)
 
-with open(filename, 'w') as f:
-    for line in status:
-        f.write(','.join(line) + '\n')
+with open('../ssh.json', 'w') as f:
+    json.dump(results, f)
